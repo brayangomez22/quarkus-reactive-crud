@@ -56,4 +56,8 @@ public class Fruit {
     private static Fruit from(Row row) {
         return new Fruit(row.getLong("id"), row.getString("name"));
     }
+
+    public String getName() {
+        return name;
+    }
 }
