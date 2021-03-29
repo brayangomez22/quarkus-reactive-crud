@@ -19,16 +19,6 @@ public class FruitResource {
         this.client = client;
     }
 
-    private void initdb() {
-        client.query("DROP TABLE IF EXISTS fruits").execute()
-                .flatMap(r -> client.query("CREATE TABLE fruits (id SERIAL PRIMARY KEY, name TEXT NOT NULL)").execute())
-                .flatMap(r -> client.query("INSERT INTO fruits (name) VALUES ('Papaya')").execute())
-                .flatMap(r -> client.query("INSERT INTO fruits (name) VALUES ('Aguacate')").execute())
-                .flatMap(r -> client.query("INSERT INTO fruits (name) VALUES ('Mandarina')").execute())
-                .flatMap(r -> client.query("INSERT INTO fruits (name) VALUES ('Limon')").execute())
-                .await().indefinitely();
-    }
-
     @GET
     public Multi<Fruit> get(){
         return Fruit.findAll(client);
