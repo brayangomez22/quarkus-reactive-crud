@@ -23,12 +23,12 @@ public class DBInit {
 
     private void initdb() {
         client.query("DROP TABLE IF EXISTS fruits").execute()
-                .flatMap(r -> client.query("CREATE TABLE fruits (id SERIAL PRIMARY KEY, name TEXT NOT NULL)").execute())
-                .flatMap(r -> client.query("INSERT INTO fruits (name) VALUES ('Papaya')").execute())
-                .flatMap(r -> client.query("INSERT INTO fruits (name) VALUES ('Aguacate')").execute())
-                .flatMap(r -> client.query("INSERT INTO fruits (name) VALUES ('Mandarina')").execute())
-                .flatMap(r -> client.query("INSERT INTO fruits (name) VALUES ('Limon')").execute())
-                .flatMap(r -> client.query("INSERT INTO fruits (name) VALUES ('Pera')").execute())
+                .flatMap(r -> client.query("CREATE TABLE fruits (id SERIAL PRIMARY KEY, name TEXT NOT NULL, amount INT NOT NULL)").execute())
+                .flatMap(r -> client.query("INSERT INTO fruits (name, amount) VALUES ('Papaya', 2)").execute())
+                .flatMap(r -> client.query("INSERT INTO fruits (name, amount) VALUES ('Aguacate', 4)").execute())
+                .flatMap(r -> client.query("INSERT INTO fruits (name, amount) VALUES ('Mandarina', 6)").execute())
+                .flatMap(r -> client.query("INSERT INTO fruits (name, amount) VALUES ('Limon', 7)").execute())
+                .flatMap(r -> client.query("INSERT INTO fruits (name, amount) VALUES ('Pera', 5)").execute())
                 .await().indefinitely();
     }
 }
